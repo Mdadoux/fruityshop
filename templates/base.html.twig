@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Fruity shop | Wel come to your shop{% endblock %}</title>
     <meta name="description" content="La boutique spécialisée dans la fabrication Made In France">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ asset('assets/css/carousel.css') }}" rel="stylesheet">
@@ -18,8 +20,8 @@
 <header data-bs-theme="dark">
     {% include 'layout/_partials/nav-bar.html.twig' %}
 </header>
-
 <main>
+    {%include 'layout/_partials/flash-messages.html.twig' %}
     {% block body %}{% endblock %}
 
 

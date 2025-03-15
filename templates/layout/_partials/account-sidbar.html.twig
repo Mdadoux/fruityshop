@@ -1,5 +1,9 @@
 <div class="account-main__sidebar">
     <ul class="list-group">
-        <li class="list-group-item"><span><a href="{{ path('app_logout') }}">Déconnexion</a></span></li>
+        <li class="list-group-item active "><span><a class="text-white" href="{{ path('app_logout') }}">Déconnexion</a></span></li>
+        <li class="list-group-item"><span><a href="{{ path('app_account') }}">Mon compte</a></span></li>
+        <li class="list-group-item"><span><a href="#">Commandes</a></span></li>
+        <li class="list-group-item"><span><a href="#">Adresses</a></span></li>
+        <li class="list-group-item"><a href="{{ path('app_update_password') }}">Mot de passe</a></li>
     </ul>
 </div>

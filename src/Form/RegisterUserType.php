@@ -50,7 +50,8 @@ class RegisterUserType extends AbstractType
                     ]
                 ],
                 'mapped' => false,
-            ])   ->add('firstname',TextType::class,[
+            ])
+            ->add('firstname',TextType::class,[
                 'label'=>false,
                 'constraints' => [
                   new NotBlank(),
