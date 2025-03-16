@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello CategoryController!{% endblock %}
+{% block body %}
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-sm-12 col-md-3">
+                <h4>Cole left sidebar</h4>
+            </div>
+            <div class="col-sm-12 col-md-9">
+                <div class="container">
+                    <header class="products__header">
+                        <h1 class="h4">{{ category.name }}</h1>
+                        <div class="products__header__inner">Il y a {{ category.products|length }} produits</div>
+                    </header>
+                    <section class="product-list row gap-3">
+                        {% for product in category.products %}
+                            <div class="card col-md-3 col-sm-6 py-2 product-list__item">
+                                <img src="{{ asset('uploads/p-imgs/') }}{{ product.image }}"
+                                     class="card-img-top img-fluid" alt="{{ product.name }}">
+                                <div class="card-body p-0">
+                                    <h2 class="card-title h6"><a class="text-decoration-none text-black" href="{{ path('app_product',{slug:product.slug}) }}">{{ product.name }}</a></h2>
+                                    {#{% if product.description %} #}
+                                    {#<p class="card-text">{{ product.description|striptags|u.truncate(80, '...', false)}}</p> #}
+                                    {#{% endif %} #}
+                                    <p class="h6">{{ product.PriceWithTaxe }}</p>
+                                    <a href="#" class="btn btn-light">Ajouter au panier</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </section>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+{% endblock %}
