@@ -41,7 +41,7 @@ class ProductCrudController extends AbstractCrudController
             ]),
             /*https://symfony.com/bundles/EasyAdminBundle/current/fields/ImageField.html*/
             ImageField::new('image')->setLabel('Image')
-                ->setRequired($pageName !== Crud::PAGE_EDIT)
+                ->setRequired($pageName !== 'edit')
                 ->setHelp('Image du produit 800x800')
                 ->setUploadedFileNamePattern('[year]-[month]-[day]-[contenthash].[extension]')
                 ->setBasePath('/uploads/p-imgs')

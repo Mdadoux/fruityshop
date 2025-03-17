@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProductController!{% endblock %}
+{% block title %}{{ product.name }}{% endblock %}
 
 {% block body %}
     <div class="product-container bg-light py-4">
@@ -37,9 +37,9 @@
                         </div>
                     {% endif %}
                     <div class="product-view__footer pt-3">
-                        <div class="product-view__price my-2 py-2 fw-bold fs-3">{{ product.priceWithTaxe }}</div>
+                        <div class="product-view__price my-2 py-2 fw-bold fs-3">{{ product.priceWithTaxe|price_fromat }}</div>
                         <div class="product-view__actions">
-                            <button class="btn btn-lg btn-primary">Ajouter au panier</button>
+                            <button class="btn btn-lg btn-primary rounded-0">Ajouter au panier</button>
                         </div>
                     </div>
                 </div>

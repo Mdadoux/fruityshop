@@ -1,0 +1,10 @@
+<div class="speed-menu">
+    {% if app.user %}
+        <a href="{{ path('app_account') }}" class="text-white text-decoration-none"><i data-feather="user"></i>
+            <span>{{ app.user.firstname }}</span>
+        </a>
+    {% else %}
+        <a href="{{ path('app_login') }}"><i data-feather="user"></i></a>
+    {% endif %}
+    <a href=""><i data-feather="shopping-cart"></i></a>
+</div>
