@@ -16,15 +16,12 @@
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
-
 <header data-bs-theme="dark">
     {% include 'layout/_partials/nav-bar.html.twig' %}
 </header>
 <main>
-    {%include 'layout/_partials/flash-messages.html.twig' %}
+    {% include 'layout/_partials/flash-messages.html.twig' %}
     {% block body %}{% endblock %}
-
-
     <!-- FOOTER -->
     <footer class="container">
         <p>&copy; 2017–2024 FruityShop <a href="#">CGV</a> &middot; <a href="#">CGU</a></p>

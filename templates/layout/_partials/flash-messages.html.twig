@@ -1,11 +1,10 @@
-{% if app.flashes is not empty %}
-    <div class="container mt-3">
-        {% for label,messages in app.flashes %}
-            {% for message in messages %}
-                <div class="alert alert-{{ label }}" role="alert">
-                    {{ message }}
-                </div>
-            {% endfor %}
+<div class="container notification-banner">
+    {% for label,messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} mt-3" role="alert">
+                {{ message }}
+            </div>
         {% endfor %}
-    </div>
-{% endif %}
+    {% endfor %}
+</div>
+

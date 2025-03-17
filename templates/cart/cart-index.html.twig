@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier{% endblock %}
+
+{% block body %}
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-sm-12 col-md-8">
+                <header class="border-bottom py-3">
+                    <h1 class="h5">Mon panier</h1>
+                    {% if cart is not empty %}
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="m-0">Les produits dans mon panier </p>
+                            <a href="{{ path('app_cart_empty') }}">Vider mon panier</a>
+                        </div>
+                    {% endif %}
+                </header>
+                <div class="cart-container">
+                    {% if cart is not empty %}
+                        <div class="cart-container__list mt-3">
+                            {% for item in cart %}
+                                <div class="cart-container__item cart-item d-flex justify-content-between mb-2">
+                                    <div class="cart-item__image">
+                                        <img src="{{ asset('uploads/p-imgs/') }}{{ item.product.image }}" alt=""
+                                             width="150">
+                                    </div>
+                                    <div class="cart-item__info flex-grow-1 d-flex flex-column justify-content-center"
+                                         style="flex-basis: 30%">
+                                        <h6>{{ item.product.name }}</h6>
+                                        <p class="m-0">{{ item.product.priceWithTaxe|price_fromat }}</p>
+                                    </div>
+                                    <div class="cart-item__quantity flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+                                        <div class="m-0 d-flex justify-content-between align-items-center">
+                                            <a href="{{ path('app_cart_rm',{id:item.product.id}) }}">-</a>
+                                            <span> x {{ item.qty }}</span>
+                                            <a href="{{ path('app_cart_dd',{id:item.product.id}) }}" class="remove">+</a>
+                                        </div>
+                                    </div>
+                                    <div class="cart-item__price ml-auto flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+                                        <p class="m-0"><b>{{ item.product.priceWithTaxe|price_fromat }}</b></p>
+                                    </div>
+                                    <div class="cart-item__actions d-flex flex-column justify-content-center align-items-center">
+                                        <a href="{{ path('app_cart_rm',{id:item.product.id}) }}">Suppr</a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="cart-container__empty py-3">
+                            <div class="cart-container__empty-inner text-center">
+                                <strong>Le panier est vide</strong>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <h2 class="h5">Détails panier</h2>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

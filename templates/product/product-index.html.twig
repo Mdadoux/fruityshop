@@ -8,7 +8,8 @@
             <div class="container">
                 <ol class="breadcrumb breadcrumb--isproduct my-0">
                     <li class="breadcrumb-item">
-                        <a href="{{ path('app_category',{slug:product.category.slug}) }}" class="text-decoration-none">{{ product.category.name }}</a>
+                        <a href="{{ path('app_category',{slug:product.category.slug}) }}"
+                           class="text-decoration-none">{{ product.category.name }}</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
                 </ol>
@@ -39,7 +40,7 @@
                     <div class="product-view__footer pt-3">
                         <div class="product-view__price my-2 py-2 fw-bold fs-3">{{ product.priceWithTaxe|price_fromat }}</div>
                         <div class="product-view__actions">
-                            <button class="btn btn-lg btn-primary rounded-0">Ajouter au panier</button>
+                            <a href="{{ path('app_cart_dd',{id:product.id}) }}" class="btn btn-lg btn-primary rounded-0">Ajouter au panier</a>
                         </div>
                     </div>
                 </div>
