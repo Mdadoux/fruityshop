@@ -6,5 +6,10 @@
     {% else %}
         <a href="{{ path('app_login') }}"><i data-feather="user"></i></a>
     {% endif %}
-    <a href="{{ path('app_cart') }}"><i data-feather="shopping-cart"></i></a>
+    <a href="{{ path('app_cart') }}" class="position-relative">
+        <i data-feather="shopping-cart"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">
+            {{ cartQty }}
+        </span>
+    </a>
 </div>

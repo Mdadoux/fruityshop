@@ -3,6 +3,7 @@
 namespace App\Twig;
 
 use App\Repository\CategoryRepository;
+use App\Services\CartService;
 use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 use Twig\TwigFilter;
@@ -10,10 +11,12 @@ use Twig\TwigFilter;
 class AppExtensions extends AbstractExtension implements GlobalsInterface
 {
     private $categoryRepository;
+    private $cartService;
 
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(CategoryRepository $categoryRepository, CartService $cartService)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->cartService = $cartService;
 
     }
 
@@ -27,20 +30,18 @@ class AppExtensions extends AbstractExtension implements GlobalsInterface
 
     public function formatPrice($price)
     {
-        /*if ($mode) {
-            $formattedPrice = explode(',', number_format($price, 2, ','));
-            return sprintf('%s%s%s%s%s%s%s€%s', '<span>', $formattedPrice[0], '</span>', '<span>', $formattedPrice[1], '</span>', '<span>', '</span>');
-        } else*/
+
         return number_format($price, 2, ',') . '€';
 
     }
 
-    // Recuperer des variable de manière globale
+    // Récupérer des variables de manière globale
     public function getGlobals(): array
     {
 
         return [
-            'categoryList' => $this->categoryRepository->findAll()
+            'categoryList' => $this->categoryRepository->findAll(),
+            'cartQty' => $this->cartService->getcartQty(),
         ];
     }
 

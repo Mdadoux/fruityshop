@@ -31,16 +31,20 @@
                                     </div>
                                     <div class="cart-item__quantity flex-grow-1 d-flex flex-column justify-content-center align-items-center">
                                         <div class="m-0 d-flex justify-content-between align-items-center">
-                                            <a href="{{ path('app_cart_rm',{id:item.product.id}) }}">-</a>
-                                            <span> x {{ item.qty }}</span>
-                                            <a href="{{ path('app_cart_dd',{id:item.product.id}) }}" class="remove">+</a>
+                                            <a href="{{ path('app_cart_rm',{id:item.product.id}) }}" class="text-black">
+                                                <i data-feather="minus"></i>
+                                            </a>
+                                            <span class="badge rounded-pill bg-light text-dark"> x {{ item.qty }}</span>
+                                            <a href="{{ path('app_cart_dd',{id:item.product.id}) }}" class="text-black">
+                                                <i data-feather="plus"></i>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="cart-item__price ml-auto flex-grow-1 d-flex flex-column justify-content-center align-items-center">
                                         <p class="m-0"><b>{{ item.product.priceWithTaxe|price_fromat }}</b></p>
                                     </div>
                                     <div class="cart-item__actions d-flex flex-column justify-content-center align-items-center">
-                                        <a href="{{ path('app_cart_rm',{id:item.product.id}) }}">Suppr</a>
+                                        <a href="{{ path('app_cart_delete',{id:item.product.id}) }}"><i data-feather="trash-2"></i></a>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -54,8 +58,33 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="col-sm-12 col-md-4">
-                <h2 class="h5">Détails panier</h2>
+            <div class="col-sm-12 col-md-4 cart-sidebar">
+                <aside class="cart-sidebar__inner py-3 px-4">
+                    <header class="cart-sidebar__top border-bottom pb-2">
+                        <h2 class="h5">Détails panier</h2>
+                    </header>
+                    <ul class="cart-sidebar__list cart-summary list-group mt-4 d-flex flex-column gap-2">
+                        <li class="cart-summary__item d-flex justify-content-between align-items-center">
+                            <span>Produit : {{ cartQty }}</span>
+                            <span class="fw-medium">{{totalPriceTt|price_fromat}}</span>
+                        </li>
+                        <li class="cart-summary__item d-flex justify-content-between align-items-center">
+                            <span></span>
+                            <span class="fw-medium"></span>
+                        </li>
+                        <li class="cart-summary__item d-flex justify-content-between align-items-center">
+                            <span>Prix H.T</span>
+                            <span class="fw-medium">{{ totalPriceHt|price_fromat }}</span>
+                        </li>
+                    </ul>
+                    <footer class="cart-sidebar__footer py-2 mt-4 border-top">
+                        <div class="cart-sidebar__total py-2 d-flex justify-content-between align-items-center">
+                            <span class="h5">Total :</span>
+                            <span class="h5">{{ totalPriceTt|price_fromat }}</span>
+                        </div>
+                        <button class="btn btn-primary w-100 my-2">Commander</button>
+                    </footer>
+                </aside>
             </div>
         </div>
 
