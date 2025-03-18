@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mes adresses{% endblock %}
+{% block body %}
+    <div class="container my-3 account-main">
+        <div class="row">
+            <div class="col-md-3 sm-12 sm-12">
+                {% include 'layout/_partials/account-sidbar.html.twig' %}
+            </div>
+            <div class="col-md-9 sm-12">
+                <div class="account-main__content">
+                    <h1 class="fs-4">Ajouter une nouvelle adresse</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, ipsum?</p>
+
+                    {{ form_start(userAddressForm) }}
+                    <div class="row">
+                        <div class="col-12">
+                            {{ form_row(userAddressForm.libelle) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            {{ form_row(userAddressForm.firstname) }}
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            {{ form_row(userAddressForm.lastname) }}
+                        </div>
+
+                        <div class="col-md-6 col-sm-12">
+                            {{ form_row(userAddressForm.address) }}
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            {{ form_row(userAddressForm.postal) }}
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            {{ form_row(userAddressForm.city) }}
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            {{ form_row(userAddressForm.phone) }}
+                        </div>
+                        <div class="col-sm-12">
+                            {{ form_row(userAddressForm.country) }}
+                        </div>
+                    </div>
+                    {{ form_end(userAddressForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

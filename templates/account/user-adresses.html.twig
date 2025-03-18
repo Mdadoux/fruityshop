@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mes adresses{% endblock %}
+{% block body %}
+    <div class="container my-3 account-main">
+        <div class="row">
+            <div class="col-md-3 sm-12 sm-12">
+                {% include 'layout/_partials/account-sidbar.html.twig' %}
+            </div>
+            <div class="col-md-9 sm-12">
+                <div class="account-main__content">
+                    <header class="account-header border-bottom pb-3 d-flex justify-content-between align-items-center mb-2">
+                        <h1 class="fs-4">Mes adresses</h1>
+                        <a href="{{ path('app_account_addresses_from') }}" class="btn btn-outline-primary">
+                            Ajouter <i data-feather="plus-circle"></i>
+                        </a>
+                    </header>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, ipsum?</p>
+                    {% if app.user.addresses|length ==0 %}
+                        <div class="alert alert-primary" role="alert">
+                            <div class="text-center my-2">
+                                <strong>Vous n'avez pas encore d'adresse sur la boutique ☺️</strong>
+                                <p><a href="{{ path('app_account_addresses_from') }}"
+                                      class="fw-medium text-decoration-none py-2 d-block m-auto">Ajouter ma première
+                                        adresse</a>
+                                </p>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="user-addresses-list row gap-3 justify-content-start align-items-center">
+                            {% for address in addresses %}
+                                <div class="card col-sm-6 col-md-3 user-addresses-list__item position-relative p-3">
+                                    <div class="top">
+                                        <div class="btn-group position-absolute top-0 end-0">
+                                            <button class="btn btn-sm" type="button" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                <i data-feather="more-vertical"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item"
+                                                       href="{{ path('app_account_addresses_from',{id:address.id}) }}">Modifier</a>
+                                                </li>
+                                                <li><a class="dropdown-item"
+                                                       href="{{ path('app_account_addresses_delete',{id:address.id}) }}">Supprimer</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <h6>{{ address.libelle }}</h6>
+                                    <p class="m-0"><span
+                                                class="fw-medium">{{ address.firstname }} {{ address.lastname }}</span><br>
+                                        {{ address.address }} {{ address.postal }}, <br>
+                                        {{ address.city }} - {{ address.country }} <br>
+                                        {{ address.phone }}
+                                    </p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
