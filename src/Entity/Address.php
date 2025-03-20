@@ -153,4 +153,10 @@ class Address
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return '<b>'.$this->getLibelle().'</b>'.'<br>'.$this->getFirstname() . ' ' . $this->getLastname().'<br>'.$this->getAddress().'<br>'.$this->getPostal().'<br>'.$this->getCity().'-'.$this->getCountry();
+
+    }
 }

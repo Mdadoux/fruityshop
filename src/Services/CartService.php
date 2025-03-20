@@ -74,6 +74,10 @@ class CartService
 
     }
 
+    /**
+     * @return int
+     * Retourne la quantité de produit présent dans le panier
+     */
     public function getCartQty(): int
     {
         $cart = $this->getCart();

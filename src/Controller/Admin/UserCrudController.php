@@ -20,6 +20,7 @@ class UserCrudController extends AbstractCrudController
     {
         return $crud
             ->setEntityLabelInSingular('Utilisateur')
+            ->setPageTitle('index','Gérez vos clients')
             ->setEntityLabelInPlural('Utilisateurs');
     }
 
