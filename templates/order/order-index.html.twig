@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier{% endblock %}
+
+{% block body %}
+    <div class="container py-3">
+        <div class="row">
+            <div class="col-sm-12 col-md-8">
+                <header class="border-bottom py-3">
+                    <h1 class="h5">Ma commande</h1>
+                    {# {% if cart is not empty %}
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="m-0">Les produits dans mon panier </p>
+                            <a href="{{ path('app_cart_empty') }}">Vider mon panier</a>
+                        </div>
+                    {% endif %} #}
+                </header>
+                <div class="cart-container">
+                    {{ form_start(orderDelivery) }}
+                    <div class="order-step order-step__addresses">
+                        {{ form_row(orderDelivery.addresses) }}
+
+                        {% if isAddress %}
+                            <div class="alert alert-primary text-center" role="alert">
+                                <span class="h5 d-block">Vous n'avez pas encore d'adresse</span>
+                                <a href="{{ path('app_account_addresses_from') }}"
+                                   class="p-2 text-decoration-none fw-medium btn">Ajouter une adresse <i data-feather="plus-circle"></i>
+                                </a>
+                            </div>
+                        {% else %}
+                            <a href="{{ path('app_account_addresses_from') }}"
+                               class="p-2 text-decoration-none fw-medium btn">Ajouter une nouvelle adresse <i
+                                        data-feather="plus-circle"></i>
+                            </a>
+                        {% endif %}
+
+
+                    </div>
+                    <div class="order-step order-step__carrier">
+                        {{ form_row(orderDelivery.carrier) }}
+                    </div>
+                    <div class="order-step-footer">
+                        <button type="submit" class="btn btn-primary float-lg-end"> Continuer <i data-feather="arrow-right"></i></button>
+                    </div>
+                    {{ form_end(orderDelivery) }}
+
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 cart-sidebar">
+                <aside class="cart-sidebar__inner py-3 px-4 border-1 border-light">
+                    <header class="cart-sidebar__top border-bottom pb-2">
+                        <h2 class="h5">Détails panier</h2>
+                    </header>
+                    <div class="accordion accordion-flush" id="products-detail">
+                        <span class="py-2 d-flex">{% if cartQty >1 %} Produits{% else %} Produit{% endif %} {{ cartQty }}</span>
+                        <div class="accordion-item border-0">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed bg-light" type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapseOne" aria-expanded="false"
+                                        aria-controls="flush-collapseOne">
+                                    Afficher les Détails
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                 aria-labelledby="flush-headingOne" data-bs-parent="#products-detail">
+                                <div class="product-summary-list">
+                                    {% for item in cart %}
+                                        <div class="product-summary-list__item row py-2 border-bottom align-items-center justify-content-between">
+                                            <div class="product-summary-list__img col-2">
+                                                <img src="{{ asset('uploads/p-imgs/') }}{{ item.product.image }}" alt=""
+                                                     width="45">
+                                            </div>
+                                            <div class="product-summary-list__info col-8">
+                                                <div class="product-summary-list__title fw-medium lh-1 fs-6">{{ item.product.name }}</div>
+                                                <div class="product-summary-list__content">
+                                                    <span> x {{ item.qty }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-summary-list__price col-2">{{ item.product.priceWithTaxe|price_fromat }}</div>
+                                        </div>
+
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="cart-sidebar__list cart-summary list-group mt-4 d-flex flex-column gap-2">
+                       {# <li class="cart-summary__item d-flex justify-content-between align-items-center">
+                            <span>Total produit </span>
+                            <span class="fw-medium">{{totalPriceTt|price_fromat}}</span>
+                        </li>#}
+                        <li class="cart-summary__item d-flex justify-content-between align-items-center">
+                            <span></span>
+                            <span class="fw-medium"></span>
+                        </li>
+                        <li class="cart-summary__item d-flex justify-content-between align-items-center">
+                            <span>Prix H.T</span>
+                            <span class="fw-medium">{{ totalPriceHt|price_fromat }}</span>
+                        </li>
+                    </ul>
+                    <footer class="cart-sidebar__footer py-2 mt-4 border-top">
+                        <div class="cart-sidebar__total py-2 d-flex justify-content-between align-items-center">
+                             <span class="h5">Total commande </span>
+                            <span class="h5">{{ totalPriceTt|price_fromat }}</span>
+                        </div>
+                       {# <button class="btn btn-primary w-100 my-2">Commander</button>#}
+                    </footer>
+                </aside>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
