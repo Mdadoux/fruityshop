@@ -1,0 +1,10 @@
+{% set value = field.value %}
+{% if value == 1 %}
+    <span class="badge bg-secondary text-white">En attente de paiement</span>
+{% elseif value ==2 %}
+    <span class="badge bg-primary">Paiement accepté</span>
+{% elseif value == 3%}
+    <span class="badge bg-success">Expédiée</span>
+{% else %}
+    <span class="badge bg-danger">Erreur de paiement</span>
+{% endif %}

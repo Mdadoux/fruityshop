@@ -65,17 +65,18 @@ final class OrderController extends AbstractController
             //Construire l'adresse de livraison
             $addressDelivery = $addressObj->getFirstname().' '.$addressObj->getLastname().'<br>';
             $addressDelivery .= $addressObj->getAddress().'<br>';
-            $addressDelivery .= $addressObj->getPostal().' '.$addressObj->getCity().'<br>';
+            $addressDelivery .= $addressObj->getPostal().' '.$addressObj->getCity().' - ';
             $addressDelivery .= $addressObj->getcountry().'<br>';
             $addressDelivery .= $addressObj->getPhone();
 
             $order = new Order();
-            $order->setCreatedAt(new \DateTime());
-            $order->setState(1);
-            $order->setCarrierPrice($form->get('carrier')->getData()->getPrice());
-            $order->setCarrierName($form->get('carrier')->getData()->getName());
-            $order->setDelivery($addressDelivery);
-            //ajouter les details du panier dans order detail
+            $order->setCreatedAt(new \DateTime());//associer la date
+            $order->setState(1);//associer un statut
+            $order->setCarrierPrice($form->get('carrier')->getData()->getPrice());//Prix du transporteur
+            $order->setCarrierName($form->get('carrier')->getData()->getName());//Nom du transporteur
+            $order->setDelivery($addressDelivery);//l'adresse de livraison mappée plus haut
+            $order->setUser($this->getUser()); // L'utilisateur actuel devient le commanditaire
+            //ajoute les details du panier dans order detail
             foreach ($cart as $item) {
                 $orderDetail = new OrderDetail();
                 $product = $item['product'];
