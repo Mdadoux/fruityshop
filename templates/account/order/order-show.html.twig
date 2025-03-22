@@ -1,0 +1,150 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mes commandes | commande n° {{ order.id }} {% endblock %}
+{% block body %}
+    <div class="container my-3 account-main">
+        <div class="row">
+            <div class="col-md-3 sm-12 sm-12">
+                {% include 'account/account-sidbar.html.twig' %}
+            </div>
+            <div class="col-md-9 sm-12">
+                <div class="account-main__content">
+                    <a href="{{ path('app_account') }}" class="btn btn-outline-secondary"> <i data-feather="arrow-left"></i> Retour</a>
+                    <header class="mb-3 border-bottom pb-3 mb-3">
+                        <h1 class="fs-4">Commande N° {{ order.id }}</h1>
+                        <div class="m-0 d-flex align-items-center gap-2 ">
+                            <span class="d-block">Du : {{ order.createdAt|date('d M Y H:i') }}</span>
+                            {% include 'admin/order/order-states.html.twig' with {field:{'value':order.state}} %}
+                        </div>
+                    </header>
+                    <div class="account-order-details">
+                        <div class="account-order-details__area">
+                            <div class="card">
+                                <div class="card-body">
+                                    <span class="mb-2 text-uppercase small fw-medium">Total commande</span>
+                                    <h3 class="card-title">{{ (order.getTotalTaxeIncl)|price_fromat }}<sup>TTC</sup>
+                                    </h3>
+                                    <div class="card-text">
+                                        <div class="text-uppercase small fw-medium pb-2">Resume facture</div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <ul class="mb-0 list-unstyled border-top w-100 pt-2">
+                                                {% for product in order.orderDetails %}
+                                                    {% set coeff = 1+ (product.productTva/100) %}
+                                                    <li class="d-flex justify-content-between align-items-center"
+                                                        title="{{ product.productName }}">
+                                                        <span class="small"> > {{ product.productQty }} X {{ product.productName }}</span>
+                                                        <span style="color: #878787">{{ ((product.productPrice * coeff) * product.productQty)|price_fromat }}</span>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center border-bottom mt-2 mb-3 pt-2"
+                                             style="border-top: 1px dashed #0000002d;">
+                                            <div class="mb-2">Totale produits TTC</div>
+                                            <div>{{ (order.getTotalTaxeIncl - order.carrierPrice)|price_fromat }}</div>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>Total produits HT</div>
+                                            <div>{{ ((order.getTotalTaxeIncl - order.carrierPrice) - order.getTotalTva)|price_fromat }}</div>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>Prix Tva</div>
+                                            <div>{{ order.getTotalTva|price_fromat }}</div>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>Livraison</div>
+                                            <div>{{ order.carrierPrice|price_fromat }}</div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                    <a href="#" class="card-link ard-link btn btn-outline-primary small float-start">Voir
+                                        la facture</a>
+                                    <a href="#" class="card-link btn btn-primary small float-end">Télécharger
+                                        Facture</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="account-order-details__area">
+
+                            <div class="card account-order-details__item">
+                                <header class="card-header bg-white border-0">
+                                    <h5 class="card-title">Livraison</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Adresse de livraison</h6>
+                                </header>
+                                <div class="card-body py-0">
+                                    <p class="card-text">{{ order.delivery|raw }}</p>
+                                </div>
+                                <footer class="card-footer bg-white border-0 py-3">
+                                    <span class="card-link text-center"><i data-feather="truck" aria-hidden="true"></i></span>
+                                    <span class="card-link text-primary"><b>{{ order.carrierName }}</b></span>
+                                </footer>
+                            </div>
+                            <div class="card account-order-details__item">
+                                <header class="card-header bg-white border-0">
+                                    <h5 class="card-title">Facturation</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Adresse de facturation</h6>
+                                </header>
+                                <div class="card-body py-0">
+                                    <p class="card-text">{{ order.delivery|raw }}</p>
+                                </div>
+                                <footer class="card-footer bg-white border-0 py-3">
+                                    <span class="card-link text-center"><i data-feather="file-text" aria-hidden="true"></i></span>
+{#                                    <span class="card-link text-primary"><b>{{ order.carrierName }}</b></span>#}
+                                </footer>
+                            </div>
+                        </div>
+                        <div class="account-order-details__area">
+
+                        </div>
+                        <div class="account-order-details__area">
+                            <div class="card account-order-details__item">
+                                <div class="card-body">
+                                    <h5 class="card-title">Détails Produit</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Liste des produits</h6>
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Produit</th>
+                                            <th scope="col">Prix unitaire HT</th>
+                                            <th scope="col">Prix TTC</th>
+                                            <th scope="col">Quantité</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for product in order.orderDetails %}
+                                            {% set coeff = 1+ (product.productTva/100) %}
+                                            <tr>
+                                                <th scope="row" class="align-middle">{{ product.id }}</th>
+                                                <td>
+                                                    <div class="d-flex justify-content-start align-items-center gap-2">
+                                                        <div class="media">
+                                                            <img src="{{ asset('uploads/p-imgs/') }}{{ product.productImage }}"
+                                                                 alt=""
+                                                                 width="50">
+                                                        </div>
+                                                        <div class="fw-bol">{{ product.productName }}</div>
+                                                    </div>
+
+                                                </td>
+                                                <td class="align-middle">{{ product.productPrice|price_fromat }}</td>
+                                                <td class="align-middle">{{ ((product.productPrice * coeff) * product.productQty)|price_fromat }}</td>
+                                                <td class="align-middle">{{ product.productQty }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                    <footer class="d-flex justify-content-end align-items-center fs-5">
+                                        <span class="card-link">Produits </span>
+                                        <span class="card-link fw-bold">{{ (order.getTotalTaxeIncl - order.carrierPrice)|price_fromat }} <sup>TTC</sup></span>
+                                    </footer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,9 +1,9 @@
 <div class="account-main__sidebar">
     <ul class="list-group">
-        <li class="list-group-item active "><span><a class="text-white" href="{{ path('app_logout') }}">Déconnexion</a></span></li>
-        <li class="list-group-item"><span><a href="{{ path('app_account') }}">Mon compte</a></span></li>
-        <li class="list-group-item"><span><a href="#">Commandes</a></span></li>
-        <li class="list-group-item"><span><a href="{{ path('app_account_addresses') }}">Adresses</a></span></li>
-        <li class="list-group-item"><a href="{{ path('app_update_password') }}">Mot de passe</a></li>
+        <li class="list-group-item"><span><a href="{{ path('app_account') }}" class="text-decoration-none"> <i data-feather="home"></i> Mon compte</a></span></li>
+        <li class="list-group-item"><span><a href="{{ path('app_account_orders') }}" class="text-decoration-none"> <i data-feather="shopping-bag"></i> Commandes</a></span></li>
+        <li class="list-group-item"><span><a href="{{ path('app_account_addresses') }}" class="text-decoration-none" > <i data-feather="map-pin"></i> Adresses</a></span></li>
+        <li class="list-group-item"><a href="{{ path('app_update_password') }}" class="text-decoration-none"><i data-feather="lock"></i> Mot de passe</a></li>
+        <li class="list-group-item"><span><a href="{{ path('app_logout') }}" class="text-decoration-none"> <i data-feather="log-out"></i> Déconnexion</a></span></li>
     </ul>
 </div>

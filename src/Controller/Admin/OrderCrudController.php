@@ -40,7 +40,7 @@ class OrderCrudController extends AbstractCrudController
     }
 
     //https://github.com/EasyCorp/EasyAdminBundle/issues/6847
-    #[AdminAction('{entityId}/action', 'admin_entity_action')]
+    #[AdminAction('{entityId}/show', 'admin_order_show')]
     public function showOrderDetail(AdminContext $context)
     {
 
@@ -61,8 +61,8 @@ class OrderCrudController extends AbstractCrudController
             ->setTemplatePath('admin/order/order-states.html.twig'),
             AssociationField::new('user')->setLabel('Client'),
             TextField::new('carrierName')->setLabel('Transporteur'),
-            NumberField::new('getTotalTva')->setLabel('Total Tva'),
-            NumberField::new('getTotalTaxeIncl')->setLabel('Prix T.T.C'),
+            NumberField::new('getTotalTva')->setLabel('Total Tva')->setTemplatePath('admin/price-field-value.html.twig'),
+            NumberField::new('getTotalTaxeIncl')->setLabel('Prix T.T.C')->setTemplatePath('admin/price-field-value.html.twig'),
         ];
     }
 

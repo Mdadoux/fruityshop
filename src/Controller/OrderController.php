@@ -34,6 +34,9 @@ final class OrderController extends AbstractController
         if (count($addresses) == 0) {
             $isAddress = true;
         }
+        if ($isAddress) {
+            return $this->redirectToRoute('app_account_addresses_from');
+        }
         $form = $this->createForm(OrderType::class, null, [
             'addresses' => $addresses,
             'action' => $this->generateUrl('app_order_summary'),// redirige vers un autre url
