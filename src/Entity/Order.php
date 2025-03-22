@@ -42,6 +42,9 @@ class Order
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $stripe_payment_session_id = null;
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
@@ -174,5 +177,17 @@ class Order
             $totalTaxeIncl += ($product->getProductPrice() * $coefficient) * $product->getProductQty();
         }
         return $totalTaxeIncl + $this->getCarrierPrice();
+    }
+
+    public function getStripePaymentSessionId(): ?string
+    {
+        return $this->stripe_payment_session_id;
+    }
+
+    public function setStripePaymentSessionId(?string $stripe_payment_session_id): static
+    {
+        $this->stripe_payment_session_id = $stripe_payment_session_id;
+
+        return $this;
     }
 }

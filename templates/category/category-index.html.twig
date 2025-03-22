@@ -64,7 +64,7 @@
                                         <a class="text-decoration-none text-black" href="{{ path('app_product',{slug:product.slug}) }}">{{ product.name }}</a>
                                     </h2>
                                     <p class="h6">{{ product.PriceWithTaxe|price_fromat }}</p>
-                                    <a href="#" class="btn btn-light w-100 fw-medium">Ajouter au panier</a>
+                                    <a href="{{ path('app_cart_dd',{id:product.id}) }}" class="btn btn-light w-100 fw-medium">Ajouter au panier</a>
                                 </div>
                             </div>
                         {% endfor %}

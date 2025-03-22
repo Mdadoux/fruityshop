@@ -108,4 +108,12 @@ class OrderDetail
 
         return $this;
     }
+
+    public function getProductPriceTaxeIncl(): ?float
+    {
+        $coeff = 1 +($this->getProductTva()/100);
+
+        return $coeff*$this->getProductPrice();
+
+    }
 }

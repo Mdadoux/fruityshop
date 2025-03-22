@@ -51,7 +51,6 @@
                     <header class="cart-sidebar__top border-bottom pb-2">
                         <h2 class="h5">Résumer de commande</h2>
                     </header>
-
                     <div class="accordion accordion-flush" id="products-detail">
                         <span class="py-2 d-flex">{% if cartQty >1 %} Produits{% else %} Produit{% endif %} {{ cartQty }}</span>
                         <div class="accordion-item border-0">
@@ -87,7 +86,6 @@
                         </div>
                     </div>
 
-
                     <ul class="cart-sidebar__list cart-summary list-group mt-4 d-flex flex-column gap-2">
                         <li class="cart-summary__item d-flex justify-content-between align-items-center">
                             <span>Total produit </span>
@@ -107,7 +105,7 @@
                              <span class="h5">Total commande </span>
                             <span class="h5">{{ (totalPriceTt + selectedOptions.carrier.price)|price_fromat }}</span>
                         </div>
-                        <button class="btn btn-primary w-100 my-2">Passer au payement</button>
+                        <a href="{{ path('app_payment',{id_order:order.id}) }}" class="btn btn-primary w-100 my-2">Passer au payement</a>
                     </footer>
                 </aside>
             </div>
