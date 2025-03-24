@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\HomeSlider;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -17,13 +18,21 @@ class HomeSliderCrudController extends AbstractCrudController
         return HomeSlider::class;
     }
 
+    public function configureCrud(Crud $crud): Crud{
+            $crud->setEntityLabelInSingular('Slide')
+            ->setEntityLabelInPlural('Slides')
+            ->setPageTitle(Crud::PAGE_INDEX,'Gestion du Home slider')
+            ->setPageTitle(Crud::PAGE_NEW,'Ajouter une slide');
+            return $crud;
+    }
+
 
     public function configureFields(string $pageName): iterable
     {
         return [
             IdField::new('id')->onlyOnIndex(),
             TextField::new('title')->setLabel('Titre'),
-            TextEditorField::new('description')->setLabel('Description'),
+            TextEditorField::new('description')->setLabel('Description')->onlyOnDetail(),
             TextField::new('link_label')->setLabel('Libelle')->setHelp('Libelle du Lien '),
             TextField::new('link_target')->setLabel('Lien')->setHelp('Adresse URL du Lien '),
             ImageField::new('image')->setLabel('Image')

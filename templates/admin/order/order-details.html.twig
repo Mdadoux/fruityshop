@@ -47,8 +47,8 @@
                         </div>
                         <hr>
                     </div>
-                    <a href="#" class="card-link ard-link btn btn-outline-primary small float-start">Voir la facture</a>
-                    <a href="#" class="card-link btn btn-primary small float-end">Télécharger Facture</a>
+                    <a href="{{ path('app_admin_invoice',{id_order:order.id}) }}"  target="_blank" class="card-link ard-link btn btn-outline-primary small float-start">Voir la facture</a>
+                    <a href="{{ path('app_admin_invoice',{id_order:order.id,mode:'download'}) }}" class="card-link btn btn-primary small float-end">Télécharger Facture</a>
                 </div>
             </div>
         </div>

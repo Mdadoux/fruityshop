@@ -6,6 +6,7 @@ use App\Entity\Product;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
@@ -32,7 +33,8 @@ class ProductCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name')->setLabel('Titre produit'),
-            SlugField::new('slug')->setHelp('Url du produit')->setTargetFieldName('name'),
+            BooleanField::new('is_Homepage')->setLabel('Afficher en page d\'accueil ?'),
+            SlugField::new('slug')->setHelp('Url du produit')->setTargetFieldName('name')->onlyOnDetail(),
             NumberField::new('price')->setLabel('Prix H.T')->setHelp('Prix du produit ht'),
             ChoiceField::new('tva')->setLabel('Taux de TVA')->setChoices([
                 '5%'=> '5.5',
@@ -48,7 +50,7 @@ class ProductCrudController extends AbstractCrudController
                 ->setUploadDir('public/uploads/p-imgs'),
             AssociationField::new('category')
                 ->setLabel('Catégorie'),
-            TextEditorField::new('description')->setHelp('Description produit'),
+            TextEditorField::new('description')->setHelp('Description produit')->onlyOnDetail(),
         ];
     }
 

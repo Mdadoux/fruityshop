@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Facture</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="invoice-wrapper">
+    <table class="invoice-header" style="border-bottom: 1px solid #6e6e6e;margin:auto; width: 100%;">
+        <tbody>
+        <tr>
+            <td style="width: 45%">
+                <div class="invoice-header__item" style="width: 100%">
+                    <div class="invoice-header__logo">
+                        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNS4yLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iZnJ1aXR5U2hvcC1sb2dvIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiDQoJIHk9IjBweCIgdmlld0JveD0iMCAwIDEzMC4yIDI2LjYiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDEzMC4yIDI2LjY7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+DQoJLnN0MHtmaWxsOiNGNEMzNDA7fQ0KPC9zdHlsZT4NCjxnIGlkPSJsb2dvIj4NCgk8ZyBpZD0ibG9nby1maXJzdCI+DQoJCTxwYXRoIGQ9Ik0zLjcsNC43YzAtMC41LDAuNC0wLjksMC45LTAuOWgxMC4zYzAuNSwwLDAuOSwwLjQsMC45LDAuOWMwLDAuNS0wLjQsMC45LTAuOSwwLjlINS42djUuOWg4LjNjMC41LDAsMC45LDAuNCwwLjksMC45DQoJCQljMCwwLjUtMC40LDAuOS0wLjksMC45SDUuNnY2LjRjMCwwLjUtMC40LDAuOS0wLjksMC45Yy0wLjUsMC0wLjktMC40LTAuOS0wLjlWNC43eiIvPg0KCQk8cGF0aCBkPSJNMTcuOCw4LjljMC0wLjUsMC40LTAuOSwwLjktMC45YzAuNSwwLDAuOSwwLjQsMC45LDAuOXYyLjNjMC45LTIsMi43LTMuMyw0LjItMy4zYzAuNSwwLDAuOSwwLjQsMC45LDAuOQ0KCQkJYzAsMC41LTAuMywwLjktMC44LDAuOWMtMi40LDAuMy00LjMsMi4xLTQuMyw1LjZ2NC4yYzAsMC41LTAuNCwwLjktMC45LDAuOWMtMC41LDAtMC45LTAuNC0wLjktMC45VjguOXoiLz4NCgkJPHBhdGggZD0iTTM2LjcsMTkuNmMwLDAuNS0wLjQsMC45LTAuOSwwLjljLTAuNSwwLTAuOS0wLjQtMC45LTAuOXYtMS4zYy0wLjgsMS4zLTIuMSwyLjQtNC4yLDIuNGMtMywwLTQuNy0yLTQuNy00LjlWOC45DQoJCQlDMjYsOC40LDI2LjQsOCwyNi45LDhjMC41LDAsMC45LDAuNCwwLjksMC45djYuNGMwLDIuMywxLjIsMy43LDMuNCwzLjdjMi4xLDAsMy43LTEuNSwzLjctMy44VjguOWMwLTAuNSwwLjQtMC45LDAuOS0wLjkNCgkJCWMwLjUsMCwwLjksMC40LDAuOSwwLjlWMTkuNnoiLz4NCgkJPHBhdGggZD0iTTM5LjcsNC4zYzAtMC42LDAuNS0xLDEuMS0xYzAuNiwwLDEuMSwwLjQsMS4xLDF2MC4zYzAsMC42LTAuNSwxLTEuMSwxYy0wLjYsMC0xLjEtMC40LTEuMS0xVjQuM3ogTTM5LjgsOC45DQoJCQljMC0wLjUsMC40LTAuOSwwLjktMC45YzAuNSwwLDAuOSwwLjQsMC45LDAuOXYxMC43YzAsMC41LTAuNCwwLjktMC45LDAuOWMtMC41LDAtMC45LTAuNC0wLjktMC45VjguOXoiLz4NCgkJPHBhdGggZD0iTTQ1LjQsMTcuMVY5LjdoLTFjLTAuNCwwLTAuOC0wLjQtMC44LTAuOGMwLTAuNSwwLjQtMC44LDAuOC0wLjhoMVY1LjJjMC0wLjUsMC40LTAuOSwwLjktMC45YzAuNSwwLDAuOSwwLjQsMC45LDAuOXYyLjkNCgkJCWgzLjJjMC41LDAsMC44LDAuNCwwLjgsMC44YzAsMC41LTAuNCwwLjgtMC44LDAuOGgtMy4ydjcuMmMwLDEuNSwwLjgsMiwyLjEsMmMwLjYsMCwxLTAuMiwxLjEtMC4yYzAuNCwwLDAuOCwwLjQsMC44LDAuOA0KCQkJYzAsMC4zLTAuMiwwLjYtMC41LDAuN2MtMC41LDAuMi0xLjEsMC4zLTEuOCwwLjNDNDYuOSwyMC42LDQ1LjQsMTkuNiw0NS40LDE3LjF6Ii8+DQoJCTxwYXRoIGQ9Ik01Mi45LDIzLjljLTAuMy0wLjEtMC42LTAuNC0wLjYtMC44YzAtMC41LDAuNC0wLjgsMC44LTAuOGMwLjIsMCwwLjMsMCwwLjUsMC4xYzAuNCwwLjEsMC43LDAuMiwxLjMsMC4yDQoJCQljMS4xLDAsMS44LTAuNywyLjUtMi4ybDAuMS0wLjJMNTIuMyw5LjRjLTAuMS0wLjItMC4xLTAuMy0wLjEtMC41YzAtMC41LDAuNC0wLjksMC45LTAuOWMwLjUsMCwwLjgsMC4zLDAuOSwwLjdsNC4zLDkuNmwzLjgtOS43DQoJCQlDNjIuMyw4LjMsNjIuNSw4LDYzLDhjMC41LDAsMC45LDAuNCwwLjksMC45YzAsMC4xLDAsMC4zLTAuMSwwLjVMNTksMjAuOGMtMS4xLDIuNS0yLjMsMy41LTQuMSwzLjUNCgkJCUM1NC4xLDI0LjMsNTMuNSwyNC4xLDUyLjksMjMuOXoiLz4NCgk8L2c+DQoJPGcgaWQ9ImxvZ28tbGFzdCI+DQoJCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik03MS40LDE4LjZjLTAuNC0wLjMtMC43LTAuOC0wLjctMS40YzAtMC45LDAuOC0xLjcsMS43LTEuN2MwLjUsMCwwLjgsMC4yLDEsMC4zYzEuMywwLjksMi42LDEuNSw0LjIsMS41DQoJCQljMS41LDAsMi40LTAuNiwyLjQtMS42djBjMC0wLjktMC42LTEuNC0zLjMtMi4xYy0zLjMtMC45LTUuNS0xLjgtNS41LTUuMXYwYzAtMywyLjQtNSw1LjgtNWMyLDAsMy44LDAuNSw1LjMsMS41DQoJCQljMC40LDAuMiwwLjgsMC43LDAuOCwxLjRjMCwwLjktMC44LDEuNy0xLjcsMS43Yy0wLjQsMC0wLjYtMC4xLTAuOS0wLjNjLTEuMi0wLjctMi4zLTEuMS0zLjUtMS4xYy0xLjQsMC0yLjEsMC42LTIuMSwxLjR2MA0KCQkJYzAsMS4xLDAuNywxLjQsMy42LDIuMmMzLjQsMC45LDUuMywyLjEsNS4zLDV2MGMwLDMuMy0yLjUsNS4xLTYuMSw1LjFDNzUuNSwyMC42LDczLjMsMjAsNzEuNCwxOC42eiIvPg0KCQk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNODUuNCw0LjdjMC0xLDAuOC0xLjgsMS44LTEuOGMxLDAsMS44LDAuOCwxLjgsMS44djQuN2MwLjgtMS4xLDEuOS0yLDMuNy0yYzIuNywwLDQuMywxLjgsNC4zLDQuN3Y2LjYNCgkJCWMwLDEtMC44LDEuOC0xLjgsMS44Yy0xLDAtMS44LTAuOC0xLjgtMS44di01LjRjMC0xLjctMC44LTIuNi0yLjItMi42Yy0xLjQsMC0yLjMsMC45LTIuMywyLjZ2NS40YzAsMS0wLjgsMS44LTEuOCwxLjgNCgkJCWMtMSwwLTEuOC0wLjgtMS44LTEuOFY0Ljd6Ii8+DQoJCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik05OC40LDE0LjFMOTguNCwxNC4xYzAtMy43LDIuOS02LjcsNi45LTYuN2MzLjksMCw2LjksMi45LDYuOSw2LjZ2MGMwLDMuNy0yLjksNi42LTYuOSw2LjYNCgkJCUMxMDEuMywyMC43LDk4LjQsMTcuOCw5OC40LDE0LjF6IE0xMDguNiwxNC4xTDEwOC42LDE0LjFjMC0xLjktMS40LTMuNi0zLjMtMy42Yy0yLjEsMC0zLjMsMS42LTMuMywzLjV2MGMwLDEuOSwxLjQsMy41LDMuMywzLjUNCgkJCUMxMDcuMywxNy42LDEwOC42LDE2LDEwOC42LDE0LjF6Ii8+DQoJCTxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMTMuNiw5LjNjMC0xLDAuOC0xLjgsMS44LTEuOGMxLDAsMS44LDAuOCwxLjgsMS44djAuMmMwLjktMS4yLDIuMS0yLjEsNC0yLjFjMywwLDUuOCwyLjMsNS44LDYuNnYwDQoJCQljMCw0LjItMi44LDYuNi01LjgsNi42Yy0xLjksMC0zLjEtMC45LTQtMS45djMuOGMwLDEtMC44LDEuOC0xLjgsMS44Yy0xLDAtMS44LTAuOC0xLjgtMS44VjkuM3ogTTEyMy4zLDE0TDEyMy4zLDE0DQoJCQljMC0yLjItMS40LTMuNi0zLjEtMy42cy0zLjEsMS40LTMuMSwzLjV2MGMwLDIuMSwxLjQsMy41LDMuMSwzLjVTMTIzLjMsMTYuMiwxMjMuMywxNHoiLz4NCgk8L2c+DQo8L2c+DQo8L3N2Zz4NCg=="
+                             alt="">
+                    </div>
+                    <p style="font-size: 14px;">Socité Frutiy Shop : www.fruityshop.com<br>
+                        258 Rue du bataillon 8960 Spring Field <br>
+                        <strong style="margin-top: 10px;display: block;">07 98 45 13 60 </strong>
+                    </p>
+
+                </div>
+            </td>
+            <td style="width: 150px;">
+
+            </td>
+            <td style="width: 48%;">
+                <div class="invoice-header__item">
+                    <h4 style="margin-bottom:5px;">Adresse de livraison</h4>
+                    <p style="font-size: 14px;">{{ order.delivery |raw }}</p>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table style="width: 100%;">
+        <tbody>
+        <tr>
+            <td style="text-align: center">
+                <h2 style="margin-bottom: 5px; font-size: 18px">Facture commande N° {{ order.id }}</h2>
+                <small>{{ order.createdAt|date(' d M Y h:m') }}</small>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table style="width: 100%;">
+        <tr>
+            <td style="width: 100%">
+                <div class="card-body">
+                    <span class="mb-2 text-uppercase small fw-medium">Total commande</span>
+                    <h3 class="card-title">{{ (order.getTotalTaxeIncl)|price_fromat }}<sup>TTC</sup></h3>
+                    <div class="card-text">
+                        <div class="text-uppercase small fw-medium pb-2">Resume facture</div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <table style="width: 100%;margin-bottom: 10px;padding-bottom: 15px">
+                                {% for product in order.orderDetails %}
+                                    {% set coeff = 1+ (product.productTva/100) %}
+                                    <tr>
+                                        <td style="height: 1px"></td>
+                                    </tr>
+                                    <tr style="width: 100%;padding-bottom: 15px">
+                                        <td style="width: 80%;">  {{ product.productQty }}
+                                            x {{ product.productName }}</td>
+                                        <td style="font-weight: bold;width: 200px;text-align: right;">{{ ((product.productPrice * coeff) * product.productQty)|price_fromat }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 1px"></td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                        <table style="width: 100%;padding-bottom: 10px;padding-top: 20px;border-top: 1px dashed #0000002d;">
+                            <tr style="width: 100%;padding-top:30px;">
+                                <td>Totale produits TTC</td>
+                                <td style="width: 150px;text-align: right">{{ (order.getTotalTaxeIncl - order.carrierPrice)|price_fromat }}</td>
+                            </tr>
+                            <tr style="width: 100%">
+                                <td>Total produits HT</td>
+                                <td style="width: 150px;text-align: right">{{ ((order.getTotalTaxeIncl - order.carrierPrice) - order.getTotalTva)|price_fromat }}</td>
+                            </tr>
+                            <tr style="width: 100%">
+                                <td>Prix Tva</td>
+                                <td style="width: 150px;text-align: right">{{ order.getTotalTva|price_fromat }}</td>
+                            </tr>
+                            <tr style="width: 100%">
+                                <td>Livraison</td>
+                                <td style="width: 150px;text-align: right">{{ order.carrierPrice|price_fromat }}</td>
+                            </tr>
+                        </table>
+
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+</div>
+</body>
+</html>
