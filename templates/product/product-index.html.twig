@@ -40,7 +40,7 @@
                     <div class="product-view__footer pt-3">
                         <div class="product-view__price my-2 py-2 fw-bold fs-3">{{ product.priceWithTaxe|price_fromat }}</div>
                         <div class="product-view__actions">
-                            <a href="{{ path('app_cart_dd',{id:product.id}) }}" class="btn btn-lg btn-primary rounded-0">Ajouter au panier</a>
+                            <a href="{{ path('app_cart_dd',{id:product.id}) }}" class="btn btn-lg btn-primary"><i data-feather="shopping-cart"></i>  <span class="mx-2 d-inline-block">Ajouter au panier</span></a>
                         </div>
                     </div>
                 </div>

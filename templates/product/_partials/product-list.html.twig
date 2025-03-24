@@ -1,0 +1,5 @@
+<div class="product-list row{% if position is defined %} product-list--display-{{ position }}{% endif %}">
+    {% for product in items %}
+        {% include 'product/_partials/product-list--item.html.twig' with { 'product':product } %}
+    {% endfor %}
+</div>

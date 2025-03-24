@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Carrier;
 use App\Entity\Category;
+use App\Entity\HomeSlider;
 use App\Entity\Order;
 use App\Entity\Product;
 use App\Entity\User;
@@ -58,5 +59,9 @@ class DashboardController extends AbstractDashboardController
         ]);
         yield MenuItem::linkToCrud('Clients', 'fa fa-users', User::class);
         yield MenuItem::linkToCrud('Transporteurs', 'fa fa-truck', Carrier::class);
+        yield MenuItem::subMenu('Gestion du site', 'fa fa-desktop')->setSubItems([
+            MenuItem::linkToCrud('Home Slider', 'fa fa-picture-o', HomeSlider::class),
+           // MenuItem::linkToCrud('Categories', 'fa fa-tags', Category::class),
+        ]);
     }
 }
