@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello AccountController!{% endblock %}
+{% block body %}
+    <div class="container my-3 account-main">
+        <div class="row">
+            <div class="col-md-3 sm-12 sm-12">
+                {% include 'account/account-sidbar.html.twig' %}
+            </div>
+            <div class="col-md-9 sm-12">
+                <div class="account-main__content">
+                    <header class="account-header border-bottom pb-3 d-flex justify-content-between align-items-center mb-2">
+                        <h1 class="fs-4">Ma liste d'envie {% if app.user.wishlists|length >0 %} - ({{ app.user.wishlists|length}}) {% endif %}</h1>
+                    </header>
+                    {% if app.user.wishlists|length > 0 %}
+                        {% include 'product/_partials/product-list.html.twig' with {'items': app.user.wishlists,'position':'wishlist'} %}
+                    {% else %}
+                        <div class="text-center mb-3 pt-5">
+                            <span class="bg-primary fw-bold order-success__icon"> <i data-feather="slash"></i> </span>
+                            <h4 class="mb-3"> Aucun produit</h4>
+                            <p>Vous n'avez pas de produit dans votre liste d'envie, pour ajouter un produit. <br>Cliquez sur l'icône en forme de <b>cœur</b> sur le produit</p>
+                            <a href="{{ path('app_home') }}" class="btn btn-outline-primary">Parcourir le catalog</a>
+
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

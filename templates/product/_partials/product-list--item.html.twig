@@ -1,4 +1,5 @@
 <div class="card col-md-3 col-sm-6 py-2 product-list__item">
+    {% include 'account/wishlist/wishlist-btn.html.twig' %}
     <img src="{{ asset('uploads/p-imgs/') }}{{ product.image }}"
          class="card-img-top img-fluid" alt="{{ product.name }}">
     <div class="card-body p-0">

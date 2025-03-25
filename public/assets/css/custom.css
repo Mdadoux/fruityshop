@@ -1,6 +1,7 @@
 @import "order-success.css";
 @import "account-order.css";
 @import "reassurances.css";
+@import "wishlist.css";
 :root{
     --primary-color: #2d6a4f;
     --secondary-color: #f4c340;

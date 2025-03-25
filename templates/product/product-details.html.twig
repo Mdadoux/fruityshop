@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+<div class="product-container bg-light py-4">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb breadcrumb--isproduct my-0">
+                <li class="breadcrumb-item">
+                    <a href="{{ path('app_category',{slug:product.category.slug}) }}"
+                       class="text-decoration-none">{{ product.category.name }}</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">{{ product.name }}</li>
+            </ol>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <div class="row product-view">
+        <div class="col-sm-12 col-md-5">
+            <div class="product-view__img-wrapper">
+                <div class="product-view__img">
+                    <img src="{{ asset('uploads/p-imgs/') }}{{ product.image }}" alt="{{ product.name }}"
+                         class="img-fluid">
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-7">
+            <div class="product-view__content" style="position: sticky;top: 80px;">
+                <header class="product-view__header border-light border-bottom py-2 mb-4">
+                    <h1 class="h4 pt-3">{{ product.name }}</h1>
+                </header>
+                {% if product.description %}
+                    <div class="product-view__body">
+                        {{ product.description|raw }}
+                    </div>
+                {% endif %}
+                <div class="product-view__footer pt-3">
+                    <div class="product-view__price my-2 py-2 fw-bold fs-3">{{ product.priceWithTaxe|price_fromat }}</div>
+                    <div class="product-view__actions d-flex gap-2 align-items-center">
+                        <a href="{{ path('app_cart_dd',{id:product.id}) }}" class="btn btn-lg btn-primary">
+                            <i data-feather="shopping-cart"></i>
+                            <span class="mx-2 d-inline-block">Ajouter au panier</span>
+
+                            {% include 'account/wishlist/wishlist-btn.html.twig' %}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    {% endblock %}
