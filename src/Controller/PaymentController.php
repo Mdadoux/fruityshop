@@ -7,6 +7,7 @@ use App\Services\CartService;
 use Doctrine\ORM\EntityManagerInterface;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
+use Stripe\StripeClient;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -69,7 +70,7 @@ final class PaymentController extends AbstractController
     }
 
     #[Route('/commande/confirmation/{stripe_session_id}', name: 'app_payment_confirmation')]
-    public function success($stripe_session_id, OrderRepository $orderRepository,EntityManagerInterface $entityManager, CartService $cartService): Response
+    public function success($stripe_session_id, OrderRepository $orderRepository, EntityManagerInterface $entityManager, CartService $cartService): Response
     {
         $order = $orderRepository->findOneBy(['stripe_payment_session_id' => $stripe_session_id, 'user' => $this->getUser()]);
         if (!$order) {
@@ -77,7 +78,7 @@ final class PaymentController extends AbstractController
         }
         if ($order->getState() == 1) {
             $order->setState(2);
-            $cartService->clearCart();//vider le panier après le paiment
+            $cartService->clearCart();//vider le panier après le payment
             $entityManager->flush();
         }
         return $this->render('payment/payment-success.html.twig', [

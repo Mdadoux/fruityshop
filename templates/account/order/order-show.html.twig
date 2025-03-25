@@ -9,7 +9,7 @@
             <div class="col-md-9 sm-12">
                 <div class="account-main__content">
                     <a href="{{ path('app_account') }}" class="btn btn-outline-secondary"> <i data-feather="arrow-left"></i> Retour</a>
-                    <header class="mb-3 border-bottom pb-3 mb-3">
+                    <header class="account-header border-bottom pb-3 d-flex justify-content-between align-items-center mb-2">
                         <h1 class="fs-4">Commande N° {{ order.id }}</h1>
                         <div class="m-0 d-flex align-items-center gap-2 ">
                             <span class="d-block">Du : {{ order.createdAt|date('d M Y H:i') }}</span>
@@ -18,8 +18,8 @@
                     </header>
                     <div class="account-order-details">
                         <div class="account-order-details__area">
-                            <div class="card">
-                                <div class="card-body">
+                            <div class="card  d-flex flex-column">
+                                <div class="card-body flex-grow-1">
                                     <span class="mb-2 text-uppercase small fw-medium">Total commande</span>
                                     <h3 class="card-title">{{ (order.getTotalTaxeIncl)|price_fromat }}<sup>TTC</sup>
                                     </h3>
@@ -58,15 +58,17 @@
                                         </div>
                                         <hr>
                                     </div>
+
+                                </div>
+                                <footer class="card-footer flex flex-wrap justify-content-between bg-transparent border-0">
                                     <a href="{{ path('app_admin_invoice',{id_order:order.id}) }}" target="_blank" class="card-link ard-link btn btn-outline-primary small float-start">Voir
                                         la facture</a>
                                     <a href="{{ path('app_admin_invoice',{id_order:order.id,mode:'download'}) }}" class="card-link btn btn-primary small float-end">Télécharger
                                         Facture</a>
-                                </div>
+                                </footer>
                             </div>
                         </div>
                         <div class="account-order-details__area">
-
                             <div class="card account-order-details__item">
                                 <header class="card-header bg-white border-0">
                                     <h5 class="card-title">Livraison</h5>
@@ -91,6 +93,20 @@
                                 <footer class="card-footer bg-white border-0 py-3">
                                     <span class="card-link text-center"><i data-feather="file-text" aria-hidden="true"></i></span>
 {#                                    <span class="card-link text-primary"><b>{{ order.carrierName }}</b></span>#}
+                                </footer>
+                            </div>
+                            <div class="card account-order-details__item">
+                                <header class="card-header bg-white border-0">
+                                    <h5 class="card-title">Paiement</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">Mode de paiement</h6>
+                                </header>
+                                <div class="card-body py-0">
+                                    <p class="card-text d-flex align-items-center justify-content-between"><span>Carte {{ paymentMethod.display_brand}}</span> <span class="fw-medium"> **********{{ paymentMethod.last4 }}</span></p>
+                                    <p class="card-text d-flex align-items-center justify-content-between"><span>Date exp : </span> <span class="fw-medium">{{ (paymentMethod.exp_year / 100)|ea_as_string|replace({'.':'/'}) }}</span></p>
+                                </div>
+                                <footer class="card-footer bg-white border-0 py-3 d-flex align-items-center">
+                                    <span class="card-link text-center"><span class="account-payment__logo account-payment__logo--{{ paymentMethod.brand }} d-inline-block" style="background-image: url({{ asset('uploads/payments/payment-logos.jpg') }});min-height: 36px;"></span></span>
+                                    <span class="card-link text-primary"><b> Carte Blue</b></span>
                                 </footer>
                             </div>
                         </div>
