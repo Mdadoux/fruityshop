@@ -38,3 +38,11 @@
     }
 }
 
+.order-states__badge {
+    display: block !important;
+    height: 12px;
+    width: 12px;
+    margin-right: 5px;
+    border-radius: 50%;
+}
+

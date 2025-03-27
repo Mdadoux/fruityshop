@@ -53,7 +53,7 @@ class AddressController extends AbstractController
             $this->entityManager->flush();
             $this > $this->addFlash('success', 'Adresse ajouté à votre liste d\'adresses 🎉');
             //S'il y a des produits au panier aller vers tunnel de commande !?
-            if ($cart = $cartService->getCartQty()>0) {
+            if ( $cartService->getCartQty()>0) {
                 return $this->redirectToRoute('app_order');
         }
 

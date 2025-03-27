@@ -3,8 +3,10 @@
     <span class="badge bg-secondary text-white">En attente de paiement</span>
 {% elseif value ==2 %}
     <span class="badge bg-primary text-white">Paiement accepté</span>
-{% elseif value == 3%}
-    <span class="badge bg-success">Expédiée</span>
-{% else %}
-    <span class="badge bg-danger">Erreur de paiement</span>
+{% elseif value == 3 %}
+    <span class="badge bg-warning">En cours de préparation</span>
+{% elseif value == 4%}
+    <span class="badge bg-success text-white">Expédiée</span>
+{% elseif value==5 %}
+    <span class="badge bg-danger text-white">Annulée</span>
 {% endif %}
