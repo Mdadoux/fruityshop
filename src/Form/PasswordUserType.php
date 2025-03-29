@@ -61,7 +61,7 @@ class PasswordUserType extends AbstractType
             ->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
                 $form = $event->getForm();
                 $user = $form->getData();
-                // recuperer le hasher depuis les options du formulaire depuis le controller
+                // Récupérer le hasher depuis les options du formulaire passé depuis le controller
                 $passwordHasher = $form->getConfig()->getOptions()['passwordHasher'];
                 $isSamePassword = $passwordHasher->isPasswordValid($user, $form->get('actualPassword')->getData());
                // les mot de passe ne sont pas identique ('ancien vs nouveau')

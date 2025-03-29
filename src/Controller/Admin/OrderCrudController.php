@@ -77,7 +77,9 @@ class OrderCrudController extends AbstractCrudController
     {
        $order->setState($order_state_id);
        $this->entityManager->flush();
+       //Récupérer l'état de la commande
        $order_state = (object)OrderStatesService::STATES[$order_state_id];
+       // Notifier l'utilisateur du succès de l'opération
        $this->addFlash('success','L\'état de la commande à été modifié');
        // Ne pas oublier de notifier le client du changement de statut
        $client = $order->getUser();
